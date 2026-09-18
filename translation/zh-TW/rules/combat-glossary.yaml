@@ -1,0 +1,35 @@
+schemaVersion: 1
+locale: zh-TW
+entries:
+  - id: rule.line-of-effect
+    kind: rule
+    name: 效果線
+    content:
+      - type: paragraph
+        text: >-
+          若要對生物或物體發動招式，你與對方之間必須存在效果線。若有實體障礙物將對方完全遮住，你與對方之間就不存在效果線。
+    status: APPROVED
+    sourceVersion: sha256:ab788bd960d08a74715f2a5238f649b43a8a64611d8b9dca9534ce4d69ce83cd
+    sourceHash: 0afbb2353cd843f30dd0729754d3ddfee06877d1631ec72a84a205b47f571d43
+
+  - id: rule.cover
+    kind: rule
+    name: 掩護
+    content:
+      - type: paragraph
+        text: >-
+          若你與生物或物體之間存在效果線，但對方的形體至少有一半被樹木、牆壁或翻倒的桌子等實體障礙物擋住，該目標便具有掩護。當你對具有掩護的生物或物體發動會造成傷害的招式時，會承受 1 個劣勢。
+    status: APPROVED
+    sourceVersion: sha256:ab788bd960d08a74715f2a5238f649b43a8a64611d8b9dca9534ce4d69ce83cd
+    sourceHash: b06702c332596196054da641fc2714a416c640d3b9942ece85a607f7c1cb4753
+
+  - id: rule.concealment
+    kind: rule
+    name: 遮蔽
+    content:
+      - type: paragraph
+        text: >-
+          黑暗、霧氣、隱形魔法，以及任何會完全遮住生物或物體、卻不會提供防護的效果，都會讓對方獲得遮蔽。即使你與這類目標之間存在效果線，只要你無法看見或以其他方式察覺對方，它對你而言便具有遮蔽。你可以對具有遮蔽的生物或物體發動打擊，前提是對方並未處於隱藏。不過，對這類目標發動的打擊會承受 1 個劣勢。
+    status: APPROVED
+    sourceVersion: sha256:ab788bd960d08a74715f2a5238f649b43a8a64611d8b9dca9534ce4d69ce83cd
+    sourceHash: ef01634fb88866392e2f70d5cabea55596091de946f455d7a37c094678bac4d6
