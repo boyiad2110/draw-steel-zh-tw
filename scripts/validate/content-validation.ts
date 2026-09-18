@@ -116,7 +116,14 @@ function parseYaml<T>(
 }
 
 export function canonicalTranslationSourceHash(entity: CanonicalEntity): string {
-  const translatableSource = JSON.stringify({ name: entity.name });
+  const translatableSource = JSON.stringify(
+    entity.kind === "ancestry"
+      ? { name: entity.name }
+      : {
+          name: entity.name,
+          content: entity.content.map(({ text }) => text),
+        },
+  );
   return createHash("sha256").update(translatableSource).digest("hex");
 }
 
@@ -188,6 +195,48 @@ function validateProvenance(
         });
       }
     }
+
+    if (lockedSource.kind === "drive-file") {
+      if (entity.source.fileName !== lockedSource.fileName) {
+        issues.push({
+          code: "source_file_mismatch",
+          path,
+          message: `${entity.id} source file must be ${lockedSource.fileName}`,
+        });
+      }
+
+      const expectedVersion = `sha256:${lockedSource.sha256}`;
+      if (entity.source.version !== expectedVersion) {
+        issues.push({
+          code: "source_version_mismatch",
+          path,
+          message: `${entity.id} source version must be ${expectedVersion}`,
+        });
+      }
+    }
+  }
+}
+
+function validateCanonicalReferences(
+  canonical: LoadedEntity<CanonicalEntity>[],
+  issues: ValidationIssue[],
+): void {
+  const canonicalIds = new Set(canonical.map(({ entity }) => entity.id));
+
+  for (const { entity, path } of canonical) {
+    if (entity.kind !== "rule") {
+      continue;
+    }
+
+    for (const reference of entity.references) {
+      if (!canonicalIds.has(reference)) {
+        issues.push({
+          code: "dangling_canonical_reference",
+          path,
+          message: `${entity.id} references missing canonical entity ${reference}`,
+        });
+      }
+    }
   }
 }
 
@@ -205,6 +254,15 @@ function validateTranslations(
         code: "dangling_translation_id",
         path,
         message: `Translation ${translation.id} has no canonical entity`,
+      });
+      continue;
+    }
+
+    if (translation.kind !== source.kind) {
+      issues.push({
+        code: "translation_kind_mismatch",
+        path,
+        message: `Translation ${translation.id} kind ${translation.kind} does not match canonical kind ${source.kind}`,
       });
       continue;
     }
@@ -245,6 +303,7 @@ export function validateContentDocuments(input: ContentValidationInput): Content
 
   validateUniqueIds(canonical, "duplicate_canonical_id", issues);
   validateUniqueIds(translations, "duplicate_translation_id", issues);
+  validateCanonicalReferences(canonical, issues);
 
   if (sourceLock) {
     validateSourceLockIds(sourceLock, input.sourceLock.path, issues);
