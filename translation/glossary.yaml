@@ -7,4 +7,28 @@ locale: zh-TW
 #     zhTW: Owner-approved zh-TW term
 #     allowedVariants: []  # Owner-approved terminology variants, if any
 # Search aliases belong to search metadata, not to this glossary.
-entries: []
+entries:
+  - english: Line of Effect
+    zhTW: 效果線
+    allowedVariants: []
+  - english: Cover
+    zhTW: 掩護
+    allowedVariants: []
+  - english: Concealment
+    zhTW: 遮蔽
+    allowedVariants: []
+  - english: Bane
+    zhTW: 劣勢
+    allowedVariants: []
+  - english: Strike
+    zhTW: 打擊
+    allowedVariants: []
+  - english: Hidden
+    zhTW: 隱藏
+    allowedVariants: []
+  - english: Ability
+    zhTW: 招式
+    allowedVariants: []
+  - english: Observe
+    zhTW: 察覺
+    allowedVariants: []
