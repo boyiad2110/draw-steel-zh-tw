@@ -21,6 +21,16 @@
 - [`docs/testing/TEST-STRATEGY.md`](docs/testing/TEST-STRATEGY.md) — 測試與規則驗證策略。
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — 目前開發里程碑。
 
+## Content validation
+
+安裝 Node.js 22 以上版本與 npm dependencies 後，執行：
+
+```sh
+npm run content:validate
+```
+
+此指令會解析並驗證所有 in-scope canonical YAML、繁中 translation YAML 與 `sources.lock.json`，包含 stable ID、來源 provenance、翻譯 reference 與 source hash/version 一致性。
+
 ## License notice
 
 英雄爭鋒 is an independent product published under the DRAW STEEL Creator License and is not affiliated with MCDM Productions, LLC. DRAW STEEL © 2026 MCDM Productions, LLC.

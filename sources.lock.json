@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "draw-steel-data",
+      "kind": "git",
+      "repository": "https://github.com/VerisimLLC/draw-steel-data.git",
+      "commit": "16bccc92a2247f5a00c561db40ea7e5314599869"
+    },
+    {
+      "id": "draw-steel-codex",
+      "kind": "git",
+      "repository": "https://github.com/VerisimLLC/draw-steel-codex.git",
+      "commit": "de0af6e11a644baae0eb7db76adae3fe2f0b493f"
+    },
+    {
+      "id": "draw-steel-rules-reference-v1",
+      "kind": "drive-file",
+      "fileId": "1-I3iX08SQ1Dpr2hJXX1zobnhhmhDiDq0",
+      "fileName": "DrawSteelRulesReferenceV1.pdf",
+      "sha256": "ab788bd960d08a74715f2a5238f649b43a8a64611d8b9dca9534ce4d69ce83cd"
+    },
+    {
+      "id": "heroes-official-rules",
+      "kind": "local-file-set",
+      "snapshotLabel": "Owner-provided Official Rules split files",
+      "publishedVersion": null,
+      "versionStatus": "UNRESOLVED",
+      "versionNote": "The split files do not unambiguously identify the published Heroes version; the exact file identities below define this snapshot.",
+      "files": [
+        {
+          "fileName": "0_DS_The Basics.pdf",
+          "byteLength": 8412294,
+          "sha256": "ae702802c41ddd261038bb36fafe4bd2f4d14751288c35591ce5c0f8ed4c58aa"
+        },
+        {
+          "fileName": "1_DS_Ancestries.pdf",
+          "byteLength": 7818822,
+          "sha256": "e89fbf89d19891d994352bce0d108c49b8f7684a40e310c98eaf868b8542e7a7"
+        },
+        {
+          "fileName": "2_DS_Background.pdf",
+          "byteLength": 1378804,
+          "sha256": "5a42088a22705f31bafa04a419f94ad0646f28ee136e789411534a6e4f220b08"
+        },
+        {
+          "fileName": "3_DS_Classes.pdf",
+          "byteLength": 881447,
+          "sha256": "a83fbfd2cd7e85219d815dcda2bf34f9906b3634f57ff0c1c40f5d114f524f80"
+        },
+        {
+          "fileName": "4_DS_Censor_Conduit_Elementalist.pdf",
+          "byteLength": 7704944,
+          "sha256": "fbe16144259d64b8a4f2258861567cc9db52cb16438f96e23682f96c3ee9b7bd"
+        },
+        {
+          "fileName": "5_DS_Fury_Null_Shadow.pdf",
+          "byteLength": 7224727,
+          "sha256": "2325f057ce4b1c5d871fc27f12b6528720ec9cd68a5430762bac77bb946bad49"
+        },
+        {
+          "fileName": "6_DS_Tactician_Talent_Troubadour.pdf",
+          "byteLength": 17527631,
+          "sha256": "03006da5ee780b43502e0f0529757f4821b0c28874bf457471a398c9631f41f5"
+        },
+        {
+          "fileName": "7_DS_Kits_Perks.pdf",
+          "byteLength": 2383268,
+          "sha256": "fa4a045d993c1b65c92135751c28ed56f062914662c5f9fc1dc426a363236677"
+        },
+        {
+          "fileName": "8_DS_Complications.pdf",
+          "byteLength": 886560,
+          "sha256": "71282378c61816c5fc318133caea4d82a2608d4e4eccf40a2ee724ac10174d17"
+        },
+        {
+          "fileName": "9_DS_Tests_Combat_Negotiation.pdf",
+          "byteLength": 5072927,
+          "sha256": "f12c3beeb4002e020e5a4e6d4133038e57fbc009ae8918ab70cd9de37c0418df"
+        },
+        {
+          "fileName": "10_DS_Downtime Projects.pdf",
+          "byteLength": 2376066,
+          "sha256": "e9606df7665ba530e0d437cefc2415c7caf386d657da7f95e67852c0b95768e5"
+        },
+        {
+          "fileName": "11_DS_Rewards.pdf",
+          "byteLength": 3452377,
+          "sha256": "a4fa5ad27345bb004804e9b845349cb1936a5acfe6494c8bf5aa2165f450e8e3"
+        },
+        {
+          "fileName": "12_DS_Gods and Religion.pdf",
+          "byteLength": 2525846,
+          "sha256": "aa06878d4ec4b6aa77feeb472b0b481a11ff592a83995d3d2cf75c7002e84fcd"
+        },
+        {
+          "fileName": "13_DS_For the Director.pdf",
+          "byteLength": 2680922,
+          "sha256": "7b6c280cfb1e8872e91e5b9a2b0d176b5b3f51f24cbe0c033a111220f0e76d4b"
+        }
+      ]
+    }
+  ]
+}

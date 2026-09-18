@@ -1,0 +1,8 @@
+schemaVersion: 1
+locale: zh-TW
+entries:
+  - id: ancestry.human
+    name: 人類
+    status: DRAFT
+    sourceVersion: sha256:e89fbf89d19891d994352bce0d108c49b8f7684a40e310c98eaf868b8542e7a7
+    sourceHash: 28b6c4fcdfdc99f7abd17a1721e7dfebfde7f6bc16960e700b38e88d2c2dade2
