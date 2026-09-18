@@ -50,6 +50,8 @@
 
 - 以小批、單一目的的 Batch 工作；預設 feature/docs branch + PR。
 - Task 開始前先確認 scope、來源與驗收條件；不要順手擴 scope。
+- Reviewer 在規劃 Batch、Agent handoff、PR review、correction 或 integration closeout 時，必須載入 `skills/project-review/SKILL.md`。
+- 需要 Agent repository mutation 的 Batch，先固定 Batch Contract，再開始第一次 write。
 - 驗證採 risk-matched verification，不要求每次文件小改都跑整套 e2e。
 - 規則、schema、角色計算與 content pipeline 變更屬高風險，必須跑相對應 automated tests 與必要的 golden fixtures。
 - PR 應描述來源、風險、驗證方式與任何刻意未處理事項。
@@ -60,5 +62,9 @@
 Agent 應遵守最小必要 Context：
 
 `AGENTS.md → task-specific skill → relevant source/content → execution → validation`
+
+Reviewer workflow 則是：
+
+`AGENTS.md → skills/project-review/SKILL.md → task-specific skill → relevant evidence`
 
 不要為單一 task 載入整套規則書或整個專案歷史。若只需要一個 class、rule 或 schema，就只讀相關資料。
