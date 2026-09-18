@@ -1,0 +1,60 @@
+schemaVersion: 1
+entities:
+  - id: rule.line-of-effect
+    kind: rule
+    name: Line of Effect
+    content:
+      - type: paragraph
+        text: >-
+          To target a creature or object with an ability, you must have line of
+          effect to them. If a solid object completely blocks the creature from
+          you, then you don’t have line of effect to them.
+    references: []
+    source:
+      sourceId: draw-steel-rules-reference-v1
+      version: sha256:ab788bd960d08a74715f2a5238f649b43a8a64611d8b9dca9534ce4d69ce83cd
+      fileName: DrawSteelRulesReferenceV1.pdf
+      page: 2
+      section: Combat Glossary
+
+  - id: rule.cover
+    kind: rule
+    name: Cover
+    content:
+      - type: paragraph
+        text: >-
+          When you have line of effect to a creature or object but that target
+          has at least half their form blocked by a solid obstruction such as a
+          tree, wall, or overturned table, the target has cover. You take a bane
+          on damage-dealing abilities used against creatures or objects that
+          have cover from you.
+    references:
+      - rule.line-of-effect
+    source:
+      sourceId: draw-steel-rules-reference-v1
+      version: sha256:ab788bd960d08a74715f2a5238f649b43a8a64611d8b9dca9534ce4d69ce83cd
+      fileName: DrawSteelRulesReferenceV1.pdf
+      page: 2
+      section: Combat Glossary
+
+  - id: rule.concealment
+    kind: rule
+    name: Concealment
+    content:
+      - type: paragraph
+        text: >-
+          Darkness, fog, invisibility magic, and any other effect that fully
+          obscures a creature or object but doesn’t protect their physical form
+          grants that creature or object concealment. Even if you have line of
+          effect to such a target, a creature or object has concealment from you
+          if you can’t see or otherwise observe them. You can target a creature
+          or object with concealment using a strike, provided they aren’t hidden.
+          However, strikes against such targets take a bane.
+    references:
+      - rule.line-of-effect
+    source:
+      sourceId: draw-steel-rules-reference-v1
+      version: sha256:ab788bd960d08a74715f2a5238f649b43a8a64611d8b9dca9534ce4d69ce83cd
+      fileName: DrawSteelRulesReferenceV1.pdf
+      page: 2
+      section: Combat Glossary

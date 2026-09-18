@@ -53,7 +53,7 @@ const provenanceSchema = z.object({
   section: z.string().min(1),
 });
 
-export const canonicalEntitySchema = z.object({
+const ancestryCanonicalEntitySchema = z.object({
   id: stableId,
   kind: z.literal("ancestry"),
   name: z.string().min(1),
@@ -64,6 +64,25 @@ export const canonicalEntitySchema = z.object({
   source: provenanceSchema,
 });
 
+const paragraphBlockSchema = z.object({
+  type: z.literal("paragraph"),
+  text: z.string().min(1),
+});
+
+const ruleCanonicalEntitySchema = z.object({
+  id: stableId,
+  kind: z.literal("rule"),
+  name: z.string().min(1),
+  content: z.array(paragraphBlockSchema).min(1),
+  references: z.array(stableId),
+  source: provenanceSchema,
+});
+
+export const canonicalEntitySchema = z.discriminatedUnion("kind", [
+  ancestryCanonicalEntitySchema,
+  ruleCanonicalEntitySchema,
+]);
+
 export const canonicalDocumentSchema = z.object({
   schemaVersion: z.literal(1),
   entities: z.array(canonicalEntitySchema).min(1),
@@ -71,13 +90,29 @@ export const canonicalDocumentSchema = z.object({
 
 export const translationStatusSchema = z.enum(["DRAFT", "REVIEW", "APPROVED", "STALE"]);
 
-export const translationEntrySchema = z.object({
-  id: stableId,
-  name: z.string().min(1),
+const translationSourceSchema = z.object({
   status: translationStatusSchema,
   sourceVersion: z.string().min(1),
   sourceHash: sha256,
 });
+
+const ancestryTranslationEntrySchema = z.object({
+  id: stableId,
+  kind: z.literal("ancestry"),
+  name: z.string().min(1),
+}).extend(translationSourceSchema.shape);
+
+const ruleTranslationEntrySchema = z.object({
+  id: stableId,
+  kind: z.literal("rule"),
+  name: z.string().min(1),
+  content: z.array(paragraphBlockSchema).min(1),
+}).extend(translationSourceSchema.shape);
+
+export const translationEntrySchema = z.discriminatedUnion("kind", [
+  ancestryTranslationEntrySchema,
+  ruleTranslationEntrySchema,
+]);
 
 export const translationDocumentSchema = z.object({
   schemaVersion: z.literal(1),

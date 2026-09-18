@@ -2,6 +2,7 @@ schemaVersion: 1
 locale: zh-TW
 entries:
   - id: ancestry.human
+    kind: ancestry
     name: 人類
     status: DRAFT
     sourceVersion: sha256:e89fbf89d19891d994352bce0d108c49b8f7684a40e310c98eaf868b8542e7a7
