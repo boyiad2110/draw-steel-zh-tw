@@ -1,0 +1,23 @@
+---
+import { loadPublishedRules } from "../../content/load-published-rules.js";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const rules = await loadPublishedRules();
+---
+
+<SiteLayout title="規則速查" description="瀏覽 Draw Steel 繁體中文 Combat Glossary 規則。">
+  <section aria-labelledby="rules-title">
+    <h1 id="rules-title">規則速查</h1>
+    <p class="lede">Combat Glossary</p>
+    <ul class="rule-list">
+      {rules.map((rule) => (
+        <li>
+          <article class="rule-card">
+            <a href={rule.route}>{rule.name}</a>
+            <p lang="en">{rule.canonicalName}</p>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </section>
+</SiteLayout>

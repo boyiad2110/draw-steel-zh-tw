@@ -1,0 +1,220 @@
+:root {
+  color-scheme: light;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: #211d19;
+  background: #f5f1e8;
+  --ink: #211d19;
+  --muted: #665e55;
+  --paper: #fffdf8;
+  --line: #d8cdbc;
+  --accent: #8c2f24;
+  --accent-dark: #642018;
+  --focus: #1167a8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+a {
+  color: var(--accent-dark);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 4px;
+  border-radius: 0.15rem;
+}
+
+h1,
+h2,
+p {
+  margin-block-start: 0;
+}
+
+h1,
+h2 {
+  line-height: 1.22;
+}
+
+h1 {
+  margin-block-end: 0.35rem;
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  margin-block: 2.2rem 0.75rem;
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-title {
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-main {
+  padding-block: clamp(2.5rem, 7vw, 5rem);
+}
+
+.site-footer {
+  padding-block: 1.5rem 2.5rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.site-footer p {
+  max-width: 80ch;
+  margin-bottom: 0;
+}
+
+.lede,
+.english-name {
+  color: var(--muted);
+}
+
+.lede {
+  max-width: 58ch;
+  font-size: 1.1rem;
+}
+
+.english-name {
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+.rule-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rule-card {
+  height: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--paper);
+}
+
+.rule-card a {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 750;
+}
+
+.rule-card p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.breadcrumbs {
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.rule-article {
+  max-width: 68ch;
+}
+
+.rule-body p {
+  margin-block-end: 1.25rem;
+}
+
+.related-rules ul {
+  padding-inline-start: 1.25rem;
+}
+
+.related-rules li + li {
+  margin-top: 0.45rem;
+}
+
+.source-panel {
+  margin-top: 3rem;
+  padding: 1rem 1.1rem;
+  border-left: 0.3rem solid var(--accent);
+  background: #ece5d8;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.source-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.source-version {
+  overflow-wrap: anywhere;
+  font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", monospace;
+  font-size: 0.82em;
+}
+
+@media (max-width: 30rem) {
+  :root {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .site-header,
+  .site-main,
+  .site-footer {
+    width: min(100% - 1.5rem, 72rem);
+  }
+
+  .site-main {
+    padding-block: 2.25rem 3rem;
+  }
+}

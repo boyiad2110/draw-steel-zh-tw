@@ -1,0 +1,64 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import { loadPublishedRules } from "../../content/load-published-rules.js";
+import type { PublishedRule } from "../../domain/rules/published-rules.js";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+export const getStaticPaths = (async () => {
+  const rules = await loadPublishedRules();
+
+  return rules.map((rule) => ({
+    params: { slug: rule.slug },
+    props: { rule },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  rule: PublishedRule;
+}
+
+const { rule } = Astro.props;
+const displayPage = rule.source.printedPage ?? rule.source.page;
+---
+
+<SiteLayout title={rule.name} description={`${rule.name}（${rule.canonicalName}）規則速查。`}>
+  <nav class="breadcrumbs" aria-label="頁面路徑">
+    <a href="/rules/">規則速查</a> <span aria-hidden="true">／</span> <span aria-current="page">{rule.name}</span>
+  </nav>
+
+  <article class="rule-article">
+    <header>
+      <h1>{rule.name}</h1>
+      <p class="english-name" lang="en">{rule.canonicalName}</p>
+    </header>
+
+    <div class="rule-body">
+      {rule.content.map((block) => <p>{block.text}</p>)}
+    </div>
+
+    <section class="related-rules" aria-labelledby="related-title">
+      <h2 id="related-title">相關規則</h2>
+      {rule.relatedRules.length > 0 ? (
+        <ul>
+          {rule.relatedRules.map((relatedRule) => (
+            <li>
+              <a href={relatedRule.route}>{relatedRule.name}</a>
+              <span lang="en">（{relatedRule.canonicalName}）</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>此條目目前沒有相關規則。</p>
+      )}
+    </section>
+
+    <aside class="source-panel" aria-labelledby="source-title">
+      <h2 id="source-title">來源</h2>
+      <p>{rule.source.fileName}，{rule.source.section}，第 {displayPage} 頁。</p>
+      <p>
+        來源版本：<span class="source-version">{rule.source.version}</span>
+      </p>
+    </aside>
+  </article>
+</SiteLayout>

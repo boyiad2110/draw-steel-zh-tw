@@ -7,19 +7,26 @@
     "node": ">=22"
   },
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "content:validate": "tsx scripts/validate/content.ts",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "node node_modules/typescript-tooling/bin/tsc --noEmit && astro check",
     "test": "vitest run",
-    "check": "npm run content:validate && npm run typecheck && npm test"
+    "check": "npm run content:validate && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "yaml": "2.9.1",
     "zod": "4.6.5"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@emnapi/runtime": "1.11.1",
     "@types/node": "26.6.1",
+    "astro": "7.3.3",
     "tsx": "4.23.13",
-    "typescript": "7.0.2",
+    "typescript": "6.0.3",
+    "typescript-tooling": "npm:typescript@7.0.2",
     "vitest": "5.0.1"
   }
 }

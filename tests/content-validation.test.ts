@@ -181,6 +181,37 @@ describe("content validation", () => {
     ]));
   });
 
+  it("reports a published reference whose target is not published", () => {
+    const coverTranslation = `
+schemaVersion: 1
+locale: zh-TW
+entries:
+  - id: rule.cover
+    kind: rule
+    name: 掩護
+    content:
+      - type: paragraph
+        text: 掩護需要效果線。
+    status: APPROVED
+    sourceVersion: sha256:2222222222222222222222222222222222222222222222222222222222222222
+    sourceHash: ${canonicalTranslationSourceHash(ruleEntity)}
+`;
+    const result = validateContentDocuments(input({
+      canonicalDocuments: [
+        { path: "line-of-effect.yaml", text: lineOfEffect },
+        { path: "cover.yaml", text: cover },
+      ],
+      translationDocuments: [{ path: "cover.zh-TW.yaml", text: coverTranslation }],
+    }));
+
+    expect(result.issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        code: "unpublished_reference_target",
+        path: "cover.yaml",
+      }),
+    ]));
+  });
+
   it("hashes all human-visible rule text", () => {
     const originalHash = canonicalTranslationSourceHash(ruleEntity);
     const renamedHash = canonicalTranslationSourceHash({ ...ruleEntity, name: "Cover Renamed" });
