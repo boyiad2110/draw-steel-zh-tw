@@ -14,6 +14,12 @@ Roadmap 是開發順序，不是固定日期承諾。每個 Batch 在前一批�
 
 **Exit:** 一小批 canonical + zh-TW content 可被穩定 parse、validate、build。
 
+## Batch 002A — Translation Foundation
+
+建立 repository-owned translation skill、glossary、style guide、authority boundary，以及 `DRAFT → REVIEW → APPROVED` 人工審核與 `STALE` 處理流程；不新增 Draw Steel 翻譯內容。
+
+**Exit:** 後續正式繁中翻譯批次可依 repository authority 執行，不需依賴私有聊天歷史或 legacy translation 作為權威。
+
 ## Batch 003 — Rules Reference MVP
 
 完成 `DrawSteelRulesReferenceV1.pdf` 範圍的 structured content、繁中翻譯、Browse、Search、Deep Link 與 cross-reference。

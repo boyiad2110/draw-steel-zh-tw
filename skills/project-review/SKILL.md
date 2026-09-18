@@ -338,7 +338,7 @@ Batch CLOSED 後 **STOP**。下一批需要新的 Batch Contract。
 Reviewer Core 不內建完整翻譯流程。
 
 若 Risk Tags 包含 `TRANSLATION`：
-- 載入 `docs/translation/TRANSLATION-WORKFLOW.md` 與相關 glossary/style guide；
+- 先載入 `skills/translation/SKILL.md`，再依其 routing 載入 `docs/translation/TRANSLATION-WORKFLOW.md`、相關 glossary/style guide 與最小必要 source/content；
 - 新中文遊戲術語 / 正式譯名由 Owner 決定；
 - source hash / version 改變需處理 `STALE`；
 - translation-specific packet / worksheet / grammar evidence 只在該 task 真正需要時載入。

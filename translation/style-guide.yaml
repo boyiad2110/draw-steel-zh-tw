@@ -1,0 +1,13 @@
+schemaVersion: 1
+locale: zh-TW
+
+# This intentionally contains only rules already established by repository
+# authority. Add punctuation, number, keyword, or ability-text conventions only
+# after they have been explicitly approved.
+rules:
+  - id: taiwan-traditional-chinese
+    instruction: 使用台灣常用繁體中文。
+  - id: terminology-consistency
+    instruction: 術語一致性優先於逐字直譯。
+  - id: preserve-english-name-metadata
+    instruction: 重要規則名、職業、能力等資料保留英文原名 metadata，以支援搜尋與 cross-reference；顯示策略由 UI 決定。
