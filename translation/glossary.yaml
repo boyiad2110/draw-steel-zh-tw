@@ -1,0 +1,10 @@
+schemaVersion: 1
+locale: zh-TW
+
+# Repository-wide formal zh-TW terminology belongs here only after Owner approval.
+# Future entry shape:
+#   - english: canonical English term
+#     zhTW: Owner-approved zh-TW term
+#     allowedVariants: []  # Owner-approved terminology variants, if any
+# Search aliases belong to search metadata, not to this glossary.
+entries: []
