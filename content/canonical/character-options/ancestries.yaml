@@ -1,0 +1,15 @@
+schemaVersion: 1
+entities:
+  - id: ancestry.human
+    kind: ancestry
+    name: Human
+    mechanical: true
+    mechanics:
+      ancestryPoints: 3
+    source:
+      sourceId: heroes-official-rules
+      version: sha256:e89fbf89d19891d994352bce0d108c49b8f7684a40e310c98eaf868b8542e7a7
+      fileName: 1_DS_Ancestries.pdf
+      page: 19
+      printedPage: 39
+      section: Human Traits
