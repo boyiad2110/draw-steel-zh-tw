@@ -3,18 +3,65 @@ import { loadPublishedRules } from "../../content/load-published-rules.js";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
 const rules = await loadPublishedRules();
+const sources = Array.from(
+  new Map(
+    rules.map((rule) => {
+      const displayPage = rule.source.printedPage ?? rule.source.page;
+      const key = `${rule.source.fileName}:${rule.source.section}:${displayPage}`;
+
+      return [
+        key,
+        {
+          fileName: rule.source.fileName,
+          section: rule.source.section,
+          page: displayPage,
+        },
+      ];
+    }),
+  ).values(),
+);
 ---
 
 <SiteLayout title="規則速查" description="瀏覽 Draw Steel 繁體中文 Combat Glossary 規則。">
-  <section aria-labelledby="rules-title">
+  <section class="rules-browser" aria-labelledby="rules-title">
     <h1 id="rules-title">規則速查</h1>
-    <p class="lede">Combat Glossary</p>
+    <p class="lede">直接閱讀目前已發布的 Combat Glossary 規則，或開啟個別條目分享與收藏。</p>
+
+    <aside class="browse-source" aria-labelledby="browse-source-title">
+      <h2 id="browse-source-title">來源</h2>
+      {sources.map((source) => (
+        <p>{source.fileName}，{source.section}，第 {source.page} 頁。</p>
+      ))}
+    </aside>
+
     <ul class="rule-list">
       {rules.map((rule) => (
         <li>
-          <article class="rule-card">
-            <a href={rule.route}>{rule.name}</a>
-            <p lang="en">{rule.canonicalName}</p>
+          <article class="rule-card" aria-labelledby={`${rule.slug}-title`}>
+            <header>
+              <h2 id={`${rule.slug}-title`}>
+                <a href={rule.route}>{rule.name}</a>
+              </h2>
+              <p class="english-name" lang="en">{rule.canonicalName}</p>
+            </header>
+
+            <div class="rule-body">
+              {rule.content.map((block) => <p>{block.text}</p>)}
+            </div>
+
+            {rule.relatedRules.length > 0 && (
+              <section class="related-rules related-rules-compact" aria-labelledby={`${rule.slug}-related-title`}>
+                <h3 id={`${rule.slug}-related-title`}>相關規則</h3>
+                <ul>
+                  {rule.relatedRules.map((relatedRule) => (
+                    <li>
+                      <a href={relatedRule.route}>{relatedRule.name}</a>
+                      <span lang="en">（{relatedRule.canonicalName}）</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
           </article>
         </li>
       ))}
