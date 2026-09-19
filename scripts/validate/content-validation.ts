@@ -1,5 +1,3 @@
-import { createHash } from "node:crypto";
-
 import { z } from "zod";
 import { parseDocument } from "yaml";
 
@@ -11,6 +9,10 @@ import {
   translationDocumentSchema,
   type TranslationEntry,
 } from "../../schemas/content.js";
+import { canonicalTranslationSourceHash } from "../../src/content/canonical-translation.js";
+import { createPublishedRulesProjection } from "../../src/domain/rules/published-rules.js";
+
+export { canonicalTranslationSourceHash } from "../../src/content/canonical-translation.js";
 
 export interface TextDocument {
   path: string;
@@ -113,18 +115,6 @@ function parseYaml<T>(
     return undefined;
   }
   return result.data;
-}
-
-export function canonicalTranslationSourceHash(entity: CanonicalEntity): string {
-  const translatableSource = JSON.stringify(
-    entity.kind === "ancestry"
-      ? { name: entity.name }
-      : {
-          name: entity.name,
-          content: entity.content.map(({ text }) => text),
-        },
-  );
-  return createHash("sha256").update(translatableSource).digest("hex");
 }
 
 function validateUniqueIds<T extends { id: string }>(
@@ -310,6 +300,24 @@ export function validateContentDocuments(input: ContentValidationInput): Content
     validateProvenance(canonical, sourceLock, issues);
   }
   validateTranslations(translations, canonical, issues);
+
+  const publishedRules = createPublishedRulesProjection(
+    canonical.map(({ entity }) => entity),
+    translations.map(({ entity }) => entity),
+  );
+  for (const issue of publishedRules.issues) {
+    if (issue.code === "approved_translation_not_current") {
+      // validateTranslations already reports this source mismatch.
+      continue;
+    }
+
+    const source = canonical.find(({ entity }) => entity.id === issue.ruleId);
+    issues.push({
+      code: issue.code,
+      path: source?.path ?? "<published-rules>",
+      message: issue.message,
+    });
+  }
 
   return {
     ok: issues.length === 0,
